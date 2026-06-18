@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AllyCare – Book a Trusted Companion in Minutes</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #1a2e6e;
+    --blue: #2563eb;
+    --blue-light: #3b82f6;
+    --green: #16a34a;
+    --green-light: #22c55e;
+    --orange: #f97316;
+    --bg: #f8faff;
+    --white: #ffffff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-400: #9ca3af;
+    --gray-600: #4b5563;
+    --gray-800: #1f2937;
+    --radius: 12px;
+    --shadow: 0 4px 24px rgba(37,99,235,0.08);
+    --shadow-md: 0 8px 32px rgba(37,99,235,0.12);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--gray-800); line-height: 1.6; }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--white);
+    box-shadow: 0 1px 12px rgba(0,0,0,0.07);
+    position: sticky; top: 0; z-index: 100;
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-icon { width: 42px; height: 42px; }
+  .logo-text { display: flex; flex-direction: column; }
+  .logo-text span:first-child { font-family: 'Poppins', sans-serif; font-size: 1.35rem; font-weight: 700; }
+  .logo-text span:first-child em { color: var(--orange); font-style: normal; }
+  .logo-text small { font-size: 0.62rem; color: var(--gray-600); letter-spacing: 0.01em; margin-top: -2px; }
+  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--gray-800); font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--blue); }
+  .btn-whatsapp {
+    background: var(--navy);
+    color: var(--white);
+    border: none; cursor: pointer;
+    padding: 10px 20px; border-radius: 8px;
+    font-size: 0.85rem; font-weight: 600;
+    display: flex; align-items: center; gap: 7px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-whatsapp:hover { background: var(--blue); }
+  .whatsapp-icon { width: 17px; height: 17px; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--white);
+    margin: 24px 5%;
+    border-radius: 18px;
+    padding: 48px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+    align-items: center;
+    box-shadow: var(--shadow);
+  }
+  .hero-left h1 { font-family: 'Poppins', sans-serif; font-size: 2.4rem; font-weight: 800; color: var(--gray-800); line-height: 1.2; margin-bottom: 16px; }
+  .hero-left p { color: var(--gray-600); font-size: 1rem; margin-bottom: 28px; }
+  .hero-badges { display: flex; gap: 20px; flex-wrap: wrap; }
+  .badge { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 600; color: var(--gray-800); text-align: center; }
+  .badge svg { width: 32px; height: 32px; color: var(--blue); }
+  .hero-img img { width: 100%; border-radius: 14px; object-fit: cover; max-height: 280px; }
+  .hero-trust { background: var(--gray-50); border-radius: 14px; padding: 28px 24px; }
+  .hero-trust .shield { display: flex; justify-content: center; margin-bottom: 14px; }
+  .hero-trust h3 { font-size: 0.95rem; font-weight: 700; text-align: center; margin-bottom: 14px; color: var(--navy); }
+  .trust-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .trust-list li { font-size: 0.85rem; display: flex; align-items: center; gap: 8px; color: var(--gray-600); }
+  .trust-list li::before { content: '✓'; color: var(--blue); font-weight: 700; flex-shrink: 0; }
+
+  /* ── WHATSAPP BANNER ── */
+  .wa-banner {
+    background: var(--white);
+    margin: 0 5% 24px;
+    border-radius: 12px;
+    padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--green);
+  }
+  .wa-banner-left { display: flex; align-items: center; gap: 14px; }
+  .wa-banner-left svg { width: 36px; height: 36px; color: var(--green); flex-shrink: 0; }
+  .wa-banner-left strong { font-size: 0.95rem; display: block; margin-bottom: 2px; }
+  .wa-banner-left span { font-size: 0.82rem; color: var(--gray-600); }
+  .btn-green {
+    background: var(--green);
+    color: var(--white);
+    border: none; cursor: pointer;
+    padding: 11px 22px; border-radius: 8px;
+    font-size: 0.85rem; font-weight: 600;
+    display: flex; align-items: center; gap: 7px;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-green:hover { background: #15803d; }
+
+  /* ── BOOKING SECTION ── */
+  .booking-section { margin: 0 5% 48px; display: grid; grid-template-columns: 1fr 300px; gap: 24px; }
+  .booking-card { background: var(--white); border-radius: 16px; box-shadow: var(--shadow); padding: 36px; }
+  .booking-card h2 { font-family: 'Poppins', sans-serif; font-size: 1.6rem; font-weight: 700; text-align: center; color: var(--gray-800); margin-bottom: 4px; }
+  .booking-card .subtitle { text-align: center; font-size: 0.85rem; color: var(--gray-400); margin-bottom: 28px; }
+  .steps-nav { display: flex; align-items: center; gap: 0; margin-bottom: 32px; }
+  .step-item { display: flex; align-items: center; gap: 7px; font-size: 0.82rem; }
+  .step-num { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; flex-shrink: 0; }
+  .step-item.active .step-num { background: var(--navy); color: var(--white); }
+  .step-item:not(.active) .step-num { background: var(--gray-100); color: var(--gray-400); }
+  .step-item.active { color: var(--gray-800); font-weight: 600; }
+  .step-item:not(.active) { color: var(--gray-400); }
+  .step-divider { flex: 1; height: 1px; background: var(--gray-200); min-width: 12px; }
+  .booking-question { font-weight: 600; margin-bottom: 18px; font-size: 0.95rem; }
+  .service-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 28px; }
+  .service-tile {
+    border: 2px solid var(--gray-200);
+    border-radius: 10px; padding: 16px 8px;
+    text-align: center; cursor: pointer;
+    transition: all 0.18s;
+    font-size: 0.75rem; font-weight: 600; color: var(--gray-800);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .service-tile:hover { border-color: var(--blue); background: #eff6ff; }
+  .service-tile.selected { border-color: var(--navy); background: #eff6ff; }
+  .service-tile svg { width: 28px; height: 28px; color: var(--blue); }
+  .btn-next {
+    background: var(--navy);
+    color: var(--white); border: none; cursor: pointer;
+    padding: 13px 32px; border-radius: 8px;
+    font-size: 0.9rem; font-weight: 600;
+    display: flex; align-items: center; gap: 8px;
+    margin-left: auto;
+    transition: background 0.2s;
+  }
+  .btn-next:hover { background: var(--blue); }
+  .accordion-list { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+  .accordion-item {
+    border: 1px solid var(--gray-200); border-radius: 10px;
+    padding: 16px 20px; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .accordion-item:hover { border-color: var(--blue-light); }
+  .acc-left { display: flex; align-items: flex-start; gap: 12px; }
+  .acc-num { width: 26px; height: 26px; border-radius: 50%; background: var(--gray-100); display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; color: var(--gray-600); flex-shrink: 0; }
+  .acc-text strong { font-size: 0.88rem; font-weight: 600; display: block; }
+  .acc-text span { font-size: 0.78rem; color: var(--gray-400); }
+
+  /* Sidebar */
+  .booking-sidebar { display: flex; flex-direction: column; gap: 16px; }
+  .sidebar-card { background: var(--white); border-radius: 14px; box-shadow: var(--shadow); padding: 24px; }
+  .sidebar-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: var(--gray-800); }
+  .summary-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; font-size: 0.82rem; }
+  .summary-row svg { width: 16px; height: 16px; color: var(--blue); flex-shrink: 0; margin-top: 2px; }
+  .summary-row .sr-label { color: var(--gray-400); font-size: 0.73rem; display: block; }
+  .summary-row .sr-val { font-weight: 600; color: var(--gray-800); }
+  .duration-badge { background: var(--navy); color: var(--white); border-radius: 8px; padding: 10px 14px; font-size: 0.85rem; font-weight: 700; margin-top: 8px; }
+  .sidebar-card .need-help { font-size: 0.82rem; color: var(--gray-600); text-align: center; margin-bottom: 12px; }
+  .vision-quote { font-style: italic; font-size: 0.82rem; color: var(--gray-600); border-left: 3px solid var(--blue-light); padding-left: 12px; margin-top: 8px; }
+
+  /* ── SERVICES ── */
+  .services-section { padding: 60px 5%; background: var(--white); margin-bottom: 0; }
+  .section-header { text-align: center; margin-bottom: 40px; }
+  .section-header h2 { font-family: 'Poppins', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--blue); margin-bottom: 8px; }
+  .section-header p { color: var(--gray-600); font-size: 0.9rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+  .service-card { background: var(--gray-50); border-radius: 14px; padding: 24px 18px; transition: box-shadow 0.2s, transform 0.2s; }
+  .service-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+  .service-card .sc-icon { width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+  .service-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 10px; color: var(--gray-800); }
+  .service-card ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .service-card ul li { font-size: 0.78rem; color: var(--gray-600); display: flex; align-items: center; gap: 6px; }
+  .service-card ul li::before { content: '✓'; font-weight: 700; flex-shrink: 0; }
+  .sc-blue .sc-icon { background: #eff6ff; }
+  .sc-blue .sc-icon svg, .sc-blue ul li::before { color: var(--blue); }
+  .sc-teal .sc-icon { background: #f0fdfa; }
+  .sc-teal .sc-icon svg, .sc-teal ul li::before { color: #0d9488; }
+  .sc-orange .sc-icon { background: #fff7ed; }
+  .sc-orange .sc-icon svg, .sc-orange ul li::before { color: var(--orange); }
+  .sc-purple .sc-icon { background: #faf5ff; }
+  .sc-purple .sc-icon svg, .sc-purple ul li::before { color: #7c3aed; }
+  .sc-pink .sc-icon { background: #fdf2f8; }
+  .sc-pink .sc-icon svg, .sc-pink ul li::before { color: #db2777; }
+
+  /* ── ABOUT / TESTIMONIALS / HOW IT WORKS ── */
+  .info-section { padding: 60px 5%; display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 40px; background: var(--bg); }
+  .info-col h2 { font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--blue); margin-bottom: 16px; }
+  .about-para { font-size: 0.88rem; color: var(--gray-600); margin-bottom: 14px; }
+  .about-checks { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .about-checks li { font-size: 0.84rem; display: flex; gap: 8px; }
+  .about-checks li::before { content: '✓'; color: var(--blue); font-weight: 700; }
+  .stars { color: #f59e0b; font-size: 1.3rem; margin-bottom: 16px; }
+  .testimonial { background: var(--white); border-radius: 12px; padding: 18px; margin-bottom: 12px; box-shadow: var(--shadow); }
+  .testimonial p { font-size: 0.83rem; color: var(--gray-600); margin-bottom: 8px; font-style: italic; }
+  .testimonial strong { font-size: 0.8rem; color: var(--gray-800); }
+  .how-steps { display: flex; flex-direction: column; gap: 16px; margin-top: 4px; }
+  .how-step { display: flex; gap: 14px; align-items: flex-start; }
+  .how-num { width: 32px; height: 32px; border-radius: 50%; background: var(--navy); color: var(--white); font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .how-step p { font-size: 0.85rem; color: var(--gray-600); }
+
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    background: var(--navy); color: var(--white);
+    padding: 48px 5%;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  }
+  .cta-banner .cta-left { display: flex; align-items: center; gap: 16px; }
+  .cta-banner .shield { width: 48px; height: 48px; flex-shrink: 0; }
+  .cta-banner h2 { font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 700; }
+  .cta-banner p { font-size: 0.88rem; opacity: 0.8; margin-top: 4px; }
+  .cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-white { background: var(--white); color: var(--navy); border: none; cursor: pointer; padding: 13px 28px; border-radius: 8px; font-size: 0.9rem; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+  .btn-white:hover { background: var(--gray-100); }
+
+  /* ── FOOTER BAR ── */
+  .footer-bar { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.1); padding: 18px 5%; display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; gap: 16px; }
+  .footer-badge { display: flex; align-items: center; gap: 8px; color: var(--white); font-size: 0.8rem; }
+  .footer-badge svg { width: 22px; height: 22px; opacity: 0.85; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-img { display: none; }
+    .booking-section { grid-template-columns: 1fr; }
+    .booking-sidebar { display: none; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .info-section { grid-template-columns: 1fr; }
+    .service-grid { grid-template-columns: repeat(3, 1fr); }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <svg class="logo-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="21" cy="21" r="21" fill="#EFF6FF"/>
+      <path d="M21 30s-9-5.5-9-12a9 9 0 0118 0c0 6.5-9 12-9 12z" fill="#f97316" opacity="0.2"/>
+      <path d="M17 18c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z" fill="#2563eb"/>
+      <path d="M21 26c-3.8 0-7 1.5-7 3.5v.5h14v-.5c0-2-3.2-3.5-7-3.5z" fill="#1a2e6e"/>
+    </svg>
+    <div class="logo-text">
+      <span><em>Ally</em>Care</span>
+      <small>When You Can't Be There, We Will</small>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#">FAQs</a></li>
+    <li><a href="#">Contact Us</a></li>
+  </ul>
+  <a href="https://wa.me/91" class="btn-whatsapp">
+    <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp Us
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <h1>Book a Trusted Companion in Minutes</h1>
+    <p>We'll be there for your loved ones, when you can't be.</p>
+    <div class="hero-badges">
+      <div class="badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Verified<br>Companions
+      </div>
+      <div class="badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        On-Time<br>Support
+      </div>
+      <div class="badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        Compassionate<br>Care
+      </div>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1576765608866-5b51046452be?w=600&q=80" alt="Companion with elderly person" />
+  </div>
+  <div class="hero-trust">
+    <div class="shield">
+      <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <h3>Trusted by Families<br>Across Jaipur</h3>
+    <ul class="trust-list">
+      <li>Police Verified</li>
+      <li>Background Checked</li>
+      <li>Trained & Reliable</li>
+      <li>Compassionate Support</li>
+    </ul>
+  </div>
+</section>
+
+<!-- WHATSAPP BANNER -->
+<div class="wa-banner">
+  <div class="wa-banner-left">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <div>
+      <strong>You Can Track & Get Updates on WhatsApp</strong>
+      <span>Live updates, arrival alerts, and reports – all on WhatsApp.</span>
+    </div>
+  </div>
+  <a href="https://wa.me/91" class="btn-green">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Track on WhatsApp
+  </a>
+</div>
+
+<!-- BOOKING -->
+<section class="booking-section">
+  <div class="booking-card">
+    <h2>Book a Companion</h2>
+    <p class="subtitle">Quick & Simple Booking</p>
+
+    <div class="steps-nav">
+      <div class="step-item active"><div class="step-num">1</div> Service</div>
+      <div class="step-divider"></div>
+      <div class="step-item"><div class="step-num">2</div> Client Details</div>
+      <div class="step-divider"></div>
+      <div class="step-item"><div class="step-num">3</div> Appointment</div>
+      <div class="step-divider"></div>
+      <div class="step-item"><div class="step-num">4</div> Requirements</div>
+      <div class="step-divider"></div>
+      <div class="step-item"><div class="step-num">5</div> Your Details</div>
+    </div>
+
+    <p class="booking-question">1. What do you need help with?</p>
+    <div class="service-grid">
+      <div class="service-tile selected" onclick="selectService(this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.63 6.63l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Hospital Visit
+      </div>
+      <div class="service-tile" onclick="selectService(this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        Doctor Consultation
+      </div>
+      <div class="service-tile" onclick="selectService(this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M21 12c.552 0 1-.449 1-1V6a1 1 0 00-1-1H3a1 1 0 00-1 1v5c0 .551.448 1 1 1h18z"/><path d="M3 12v7a1 1 0 001 1h16a1 1 0 001-1v-7"/></svg>
+        Diagnostic Test
+      </div>
+      <div class="service-tile" onclick="selectService(this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Medicine Pickup
+      </div>
+      <div class="service-tile" onclick="selectService(this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        Bank Visit
+      </div>
+      <div class="service-tile" onclick="selectService(this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h.01M15 9h.01M9 15h.01M15 15h.01"/></svg>
+        Government Office Work
+      </div>
+      <div class="service-tile" onclick="selectService(this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        Travel Assistance
+      </div>
+      <div class="service-tile" onclick="selectService(this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+        Shopping Assistance
+      </div>
+      <div class="service-tile" onclick="selectService(this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Elder Companion at Home
+      </div>
+      <div class="service-tile" onclick="selectService(this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        Other (Please specify)
+      </div>
+    </div>
+
+    <button class="btn-next">Next →</button>
+
+    <div class="accordion-list">
+      <div class="accordion-item">
+        <div class="acc-left">
+          <div class="acc-num">2</div>
+          <div class="acc-text"><strong>Client Details</strong><span>Details of the person who needs assistance</span></div>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-item">
+        <div class="acc-left">
+          <div class="acc-num">3</div>
+          <div class="acc-text"><strong>Appointment Details</strong><span>Date, time, pickup & destination</span></div>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-item">
+        <div class="acc-left">
+          <div class="acc-num">4</div>
+          <div class="acc-text"><strong>Special Requirements</strong><span>Support & companion preferences</span></div>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="accordion-item">
+        <div class="acc-left">
+          <div class="acc-num">5</div>
+          <div class="acc-text"><strong>Your Details</strong><span>Your contact information</span></div>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="booking-sidebar">
+    <div class="sidebar-card">
+      <h3>Booking Summary</h3>
+      <div class="summary-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        <div><span class="sr-label">Service</span><span class="sr-val">Hospital Visit</span></div>
+      </div>
+      <div class="summary-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <div><span class="sr-label">Date</span><span class="sr-val">24 May 2024</span></div>
+      </div>
+      <div class="summary-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div><span class="sr-label">Time</span><span class="sr-val">10:00 AM</span></div>
+      </div>
+      <div class="summary-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div><span class="sr-label">Pickup Location</span><span class="sr-val">Mansarovar, Jaipur</span></div>
+      </div>
+      <div class="summary-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div><span class="sr-label">Destination</span><span class="sr-val">SMS Hospital, Jaipur</span></div>
+      </div>
+      <div class="duration-badge">Estimated Duration: 3 – 4 Hours</div>
+    </div>
+
+    <div class="sidebar-card">
+      <h3 style="text-align:center; color:var(--navy)">Need Help?</h3>
+      <p class="need-help">Chat with our care advisor on WhatsApp</p>
+      <a href="https://wa.me/91" class="btn-green" style="justify-content:center">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+
+    <div class="sidebar-card">
+      <h3 style="text-align:center; color:var(--blue)">Our Vision</h3>
+      <p class="vision-quote">"To build a community where every elder feels cared for, respected, and never alone."</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="section-header">
+    <h2>Our Services</h2>
+    <p>We provide a wide range of companion and assistance services</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card sc-blue">
+      <div class="sc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.63 6.63l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+      <h4>Medical Assistance</h4>
+      <ul><li>Hospital Visits</li><li>Doctor Consultations</li><li>Diagnostic Tests</li><li>Medicine Collection</li></ul>
+    </div>
+    <div class="service-card sc-teal">
+      <div class="sc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+      <h4>Banking Assistance</h4>
+      <ul><li>Bank Visits</li><li>KYC Updates</li><li>Pension Work</li><li>Documentation</li></ul>
+    </div>
+    <div class="service-card sc-orange">
+      <div class="sc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h.01M15 9h.01M9 15h.01M15 15h.01"/></svg></div>
+      <h4>Government Assistance</h4>
+      <ul><li>Aadhaar Services</li><li>Passport Work</li><li>Utility Offices</li><li>Other Govt. Tasks</li></ul>
+    </div>
+    <div class="service-card sc-purple">
+      <div class="sc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+      <h4>Personal Companion</h4>
+      <ul><li>Shopping</li><li>Travel Assistance</li><li>Events</li><li>Daily Errands</li></ul>
+    </div>
+    <div class="service-card sc-pink">
+      <div class="sc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#db2777" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+      <h4>Elder Care Support</h4>
+      <ul><li>Senior Companion Visits</li><li>Home Check-ins</li><li>Appointment Support</li><li>Emotional Support</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- INFO ROW -->
+<section class="info-section" id="about">
+  <div class="info-col">
+    <h2>About Us</h2>
+    <p class="about-para">AllyCare is a trusted companion service in Jaipur, helping families ensure their loved ones get the care and support they need — anytime, anywhere.</p>
+    <ul class="about-checks">
+      <li>Police Verified</li>
+      <li>Trained & Reliable</li>
+      <li>Compassionate & Caring</li>
+    </ul>
+  </div>
+  <div class="info-col">
+    <h2>What Our Clients Say</h2>
+    <div class="stars">★★★★★</div>
+    <div class="testimonial">
+      <p>"AllyCare has been a blessing for our family. The companion was polite, punctual, and took excellent care of my father."</p>
+      <strong>– Neha Sharma, Jaipur</strong>
+    </div>
+    <div class="testimonial">
+      <p>"Very professional service. I get live updates on WhatsApp, which gives me complete peace of mind."</p>
+      <strong>– Rajesh Mehta, Jaipur</strong>
+    </div>
+  </div>
+  <div class="info-col" id="how-it-works">
+    <h2>How It Works</h2>
+    <div class="how-steps">
+      <div class="how-step"><div class="how-num">1</div><p>Book a service online or on WhatsApp</p></div>
+      <div class="how-step"><div class="how-num">2</div><p>We assign a verified companion</p></div>
+      <div class="how-step"><div class="how-num">3</div><p>Get live updates on WhatsApp</p></div>
+      <div class="how-step"><div class="how-num">4</div><p>Your loved one is in safe hands</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="cta-left">
+    <svg class="shield" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div>
+      <h2>Your Loved Ones Deserve the Best Care</h2>
+      <p>Book a trusted companion today and give your family peace of mind.</p>
+    </div>
+  </div>
+  <div class="cta-btns">
+    <a href="#" class="btn-white">Book Now</a>
+    <a href="https://wa.me/91" class="btn-green">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp Us
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER BAR -->
+<div class="footer-bar">
+  <div class="footer-badge">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    100% Verified Companions
+  </div>
+  <div class="footer-badge">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+    Trained for Elder Care
+  </div>
+  <div class="footer-badge">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    On-Time Every Time
+  </div>
+  <div class="footer-badge">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+    Compassionate & Friendly
+  </div>
+  <div class="footer-badge">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Serving Jaipur with Care
+  </div>
+</div>
+
+<script>
+  function selectService(el) {
+    document.querySelectorAll('.service-tile').forEach(t => t.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+</script>
+</body>
+</html>
